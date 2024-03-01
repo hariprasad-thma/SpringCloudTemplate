@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17  # Use the desired Java version
+
+  pre_build:
+    commands:
+      - echo "Installing Gradle Wrapper..."
+      - chmod +x gradlew  # Ensure execution permissions for Gradle Wrapper
+      - ./gradlew --version
+
+  build:
+    commands:
+      - echo "Building Spring Boot project..."
+      - ./gradlew build
+
+artifacts:
+  files:
+    - target/*.jar
+    - scripts/*.sh
+    - appspec.yml
+  discard-paths: yes
+ # base-directory: 'build/libs'
